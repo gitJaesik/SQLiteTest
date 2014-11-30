@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class InsertActivity extends ActionBarActivity {
 
@@ -25,6 +26,7 @@ public class InsertActivity extends ActionBarActivity {
 		mydb = new DBHelper(this);
 
 		// 그림과 연결
+
 		name = (EditText) findViewById(R.id.name);
 		menu = (EditText) findViewById(R.id.menu);
 		desc = (EditText) findViewById(R.id.desc);
@@ -32,21 +34,13 @@ public class InsertActivity extends ActionBarActivity {
 
 		btnsave.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				// db.insert("ForkTable", null, contentValues);
 				mydb.insertRestaurant(name.getText().toString(), menu.getText()
 						.toString(), desc.getText().toString());
-				/*
-				 * public void saveTimeRecord(String time, String notes) {
-				 * database.execSQL(“INSERT INTO TIMERECORDS“ + “ (TIME, NOTES)”
-				 * + “ VALUES (‘” + time + “’, ‘” + notes + “’)” ); }
-				 * 
-				 * public void saveTimeRecord(String time, String notes) {
-				 * ContentValues contentValues = new ContentValues();
-				 * contentValues.put(TIMETRACKER_COLUMN_TIME, time);
-				 * contentValues.put(TIMETRACKER_COLUMN_NOTES, notes);
-				 * database.insert(TABLE_NAME, null, contentValues); }
-				 */
+				Toast.makeText(getApplicationContext(), "Add Completed!",
+						Toast.LENGTH_LONG).show();
+
+				finish();
+
 			}
 		});
 	}

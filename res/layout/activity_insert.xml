@@ -11,7 +11,10 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dip"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dip"
+        android:layout_marginTop="10dip"
         android:orientation="horizontal" >
 
         <TextView
@@ -19,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
             android:text="" />
+
         <Button
             android:id="@+id/btnsave"
             android:layout_width="wrap_content"
@@ -29,7 +33,10 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dip"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dip"
+        android:layout_marginTop="10dip"
         android:orientation="horizontal" >
 
         <TextView
@@ -43,13 +50,16 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/restaurant_name" 
-            android:focusable="true"/>
+            android:focusable="true"
+            android:hint="@string/restaurant_name" />
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dip"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dip"
+        android:layout_marginTop="10dip"
         android:orientation="horizontal" >
 
         <TextView
@@ -65,10 +75,13 @@
             android:layout_weight="1"
             android:hint="@string/restaurant_menu" />
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dip"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dip"
+        android:layout_marginTop="10dip"
         android:orientation="horizontal" >
 
         <TextView

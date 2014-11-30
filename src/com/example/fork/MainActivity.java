@@ -2,6 +2,7 @@ package com.example.fork;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.ActionBarActivity;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 public class MainActivity extends ActionBarActivity {
 	EditText searchText;
 	DBHelper myDB;
+	Cursor cursor;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,18 +28,11 @@ public class MainActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_main);
 		myDB = new DBHelper(this);
 		myDB.getWritableDatabase();
-		Cursor cursor;
 
-		// cursor = myDB.rawQuery("SELECT * FROM ForkTable");
 		cursor = myDB.getMainList();
 
 		startManagingCursor(cursor);
 
-		// cursor.moveToFirst();
-		// Log.d("cursortest", cursor.toString() );
-		// Log.d("cursortest ", String.valueOf(cursor.getCount()) );
-		// Log.d("cursortest name", cursor.getString(1) );
-		// Log.d("cursortest menu", cursor.getString(2) );
 		SimpleCursorAdapter Adapter = null;
 		Adapter = new SimpleCursorAdapter(MainActivity.this,
 				android.R.layout.simple_list_item_2, cursor, new String[] {
@@ -49,22 +44,22 @@ public class MainActivity extends ActionBarActivity {
 		list.setOnItemClickListener(new OnItemClickListener() {
 			
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-				Toast.makeText(getApplicationContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
+				//Toast.makeText(getApplicationContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
+				cursor.moveToFirst();
+				for(int i = 0; i < position; i++){
+					cursor.moveToNext();
+				}
+				
+				Intent intent = new Intent(getApplicationContext(),
+						ViewActivity.class);
+				intent.putExtra("_id", cursor.getString(cursor.getColumnIndex("_id")));
+				intent.putExtra("name", cursor.getString(cursor.getColumnIndex("name")));
+				intent.putExtra("menu", cursor.getString(cursor.getColumnIndex("menu")));
+				intent.putExtra("desc", cursor.getString(cursor.getColumnIndex("desc")));
+				startActivity(intent);
 			}
 		});
-		/*
-        lv.setOnItemClickListener(new OnItemClickListener() {
-        	 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            	
-            	// "kslink is stand for kakao story link" 
-            	String url = dataList.get(position).get("kslink");
-            	Intent webintent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            	startActivity(webintent);
-            }
-        });
-        */
+		
 
 		Button addButton = (Button) findViewById(R.id.add);
 		addButton.setOnClickListener(new OnClickListener() {
@@ -85,7 +80,7 @@ public class MainActivity extends ActionBarActivity {
 			public void onClick(View v) {
 				// TODO 검색어를 가지고 검색을 실행
 
-				if (searchText.getText().toString() != "") {
+				if (!searchText.getText().toString().equals("")) {
 					// Execute when there are some string
 
 					Intent intent = new Intent(getApplicationContext(),

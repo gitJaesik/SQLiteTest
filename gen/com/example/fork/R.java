@@ -1077,7 +1077,8 @@ containing a value of this type.
         public static final int abc_textfield_searchview_holo_light=0x7f020054;
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
-        public static final int ic_launcher=0x7f020057;
+        public static final int fork=0x7f020057;
+        public static final int ic_launcher=0x7f020058;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
@@ -1268,6 +1269,7 @@ containing a value of this type.
         public static final int restaurant_name=0x7f0a0012;
         public static final int save=0x7f0a0013;
         public static final int search=0x7f0a001c;
+        public static final int search_hint=0x7f0a001e;
         public static final int title_activity_insert=0x7f0a0010;
         public static final int title_activity_search=0x7f0a001d;
         public static final int title_activity_view=0x7f0a0019;
